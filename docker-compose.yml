@@ -1,0 +1,10 @@
+name: Django-Smart-ATM-Project
+
+services:
+  app:
+    image: django-smart-atm-image
+    container_name: atm-container
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/app
