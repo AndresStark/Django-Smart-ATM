@@ -17,4 +17,7 @@ class Account(models.Model):
     account_authenticated = models.BooleanField(default=False, verbose_name="cuenta_autenticada")
 
     def __str__(self):
-        return f"{self.user.first_name}: " + self.account_number
+        if not self.account_number == None:
+            return f"Mi número de cuenta: {self.account_number}"
+        else:
+            return "Cuenta dañada"
