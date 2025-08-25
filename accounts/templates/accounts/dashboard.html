@@ -1,11 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
-    <div class="py-16 rounded"></div>
-    <div class="py-16 rounded lg:col-span-2">
-        <h1 class="text-4xl font-bold text-gray-900 sm:text-4xl">Dashboard</h1>
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-6 lg:gap-8">
+    <div class="rounded"></div>
+    <div class="rounded lg:col-span-4 bg-cyan-100">
+        
+        <article class="rounded-xl border border-cyan-200 bg-cyan-100 p-4">
+            <div class="flex items-center gap-4">
+                <img
+                alt=""
+                src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+                class="size-16 rounded-full object-cover"
+                />
+
+                <div>
+                <h3 class="text-lg font-medium text-gray-500">{{ user.first_name }} {{ user.last_name }}</h3>
+
+                <div class="flow-root">
+                    <ul class="-m-1 flex flex-wrap">
+                    <li class="p-1 leading-none">
+                        <div class="text-xs font-medium text-gray-700">{{ user.phone }}</div>
+                    </li>
+
+                    <li class="p-1 leading-none">
+                        <div class="text-xs font-medium text-gray-700">{{ user.email }}</div>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+
+            <ul class="mt-4 space-y-2">
+            {% for account in accounts %}
+                {% if account.user == user %}
+                <li>
+                <div class="block h-full rounded-lg border border-gray-400 p-4 hover:border-cyan-500">
+                <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+                    <div class="rounded lg:col-span-2">
+                        <strong class="font-medium text-gray-500">Cuenta bancaria digital</strong><br>
+                        <strong class="font-medium text-gray-600">{{ account.account_number }}</strong>
+                        <p class="mt-1 text-xs font-medium text-gray-700">
+                    </div>
+                    <div class="rounded text-right">
+                        <strong class="font-medium text-gray-600">Balance actual:</strong><br>
+                        <strong class="font-medium text-gray-600">${{ account.balance }}</strong>
+                    </div>
+                </div>
+                </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            </article>
+
     </div>
-    <div class="py-16 rounded"></div>
+    <div class="rounded"></div>
 </div>
 {% endblock content %}

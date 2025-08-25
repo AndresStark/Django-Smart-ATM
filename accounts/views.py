@@ -20,7 +20,7 @@ class AccountDashboardView(generic.ListView):
 class AccountCreationView(generic.FormView):
     form_class = AccountCreationForm
     template_name = 'accounts/creation.html'
-    success_url = reverse_lazy('atm:home')
+    success_url = reverse_lazy('accounts:dashboard')
 
     def form_valid(self, form:AccountCreationForm):
         user = UserATM.objects.get(username=self.request.user.username)
@@ -30,6 +30,8 @@ class AccountCreationView(generic.FormView):
             form.instance.account_number = str(random.randint(10**15, 10**16 - 1))
             form.instance.account_authenticated = True
             form.save()
+            user.has_account = True
+            user.save()
         else:
             ValidationError('Incorrect password')
         form.save()

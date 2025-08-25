@@ -131,6 +131,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
 
+AUTH_USER_MODEL = "accounts.UserATM"
+
 LOGIN_REDIRECT_URL = "atm:home"
 LOGOUT_REDIRECT_URL = "atm:home"
 LOGIN_URL = "accounts:login"
