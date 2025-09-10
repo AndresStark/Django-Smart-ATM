@@ -4,8 +4,6 @@ from django import forms
 
 from .models import UserATM, Account
 
-import random
-
 class UserATMCreationForm(UserCreationForm):
     class Meta:
         model = UserATM
@@ -30,7 +28,7 @@ class AccountCreationForm(forms.ModelForm):
         model = Account
         fields = []
     
-    password = forms.CharField(max_length=200, label="Contraseña")
+    password = forms.CharField(widget=forms.PasswordInput, max_length=200, label="Current Password")
 
     def obtain_password(self):
         return self.cleaned_data['password']

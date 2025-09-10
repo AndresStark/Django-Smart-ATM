@@ -34,5 +34,4 @@ class AccountCreationView(generic.FormView):
             user.save()
         else:
             ValidationError('Incorrect password')
-        form.save()
         return super().form_valid(form)
