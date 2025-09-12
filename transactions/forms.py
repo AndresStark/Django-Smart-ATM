@@ -10,20 +10,20 @@ class TransactionForm(forms.ModelForm):
         fields = []
 
 
+class WithdrawTransactionForm(TransactionForm):
+    amount = forms.FloatField(label="Amount to Deposit", required=True)
+    description = forms.CharField(max_length=500, label="Withdraw description", required=False)
+
+
 class DepositTransactionForm(TransactionForm):
     amount = forms.FloatField(label="Amount to Deposit", required=True)
     description = forms.CharField(max_length=500, label="Deposit description", required=False)
 
 
 class TransferTransactionForm(TransactionForm):
-    destiny_account_number = forms.CharField(max_length=16, label="Destiny Account Number", required=True)
+    destiny_account_number = forms.CharField(min_length=16, max_length=16, label="Destiny Account Number", required=True)
     amount = forms.FloatField(label="Amount to Transfer", required=True)
-    description = forms.CharField(max_length=500, label="Transfer description")
-
-
-class WithdrawTransactionForm(TransactionForm):
-    amount = forms.FloatField(label="Amount to Deposit", required=True)
-    description = forms.CharField(max_length=500, label="Withdraw description")
+    description = forms.CharField(max_length=500, label="Transfer description", required=False)
 
 
 class TransactionVerificationForm(forms.Form):

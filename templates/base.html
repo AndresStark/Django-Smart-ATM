@@ -32,6 +32,7 @@
                     <a class="text-gray-500 transition hover:text-gray-500/75" href="{% url "atm:home" %}"> Home </a>
                     </li>
 
+                    {% if user.is_authenticated %}
                     <li>
                         <div class="hidden invisible hover:visible md:relative md:block">
                             <a class="visible text-gray-500 transition hover:text-gray-500/75" href="{% url "atm:home" %}"> Applications </a>
@@ -43,7 +44,7 @@
                                 <div class="p-2">
                                 {% if user.has_account %}
                                 <a
-                                    href="{% url "accounts:create" %}"
+                                    href="{% url "transactions:withdraw" %}"
                                     class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                     role="menuitem"
                                 >
@@ -59,7 +60,7 @@
                                 </a>
 
                                 <a
-                                    href="{% url "accounts:create" %}"
+                                    href="{% url "transactions:transfer" %}"
                                     class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                     role="menuitem"
                                 >
@@ -67,7 +68,7 @@
                                 </a>
                                 {% else %}
                                 <a
-                                    href="#"
+                                    href="{% url "accounts:create" %}"
                                     class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                     role="menuitem"
                                 >
@@ -75,7 +76,7 @@
                                 </a>
 
                                 <a
-                                    href="#"
+                                    href="{% url "accounts:create" %}"
                                     class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                     role="menuitem"
                                 >
@@ -83,7 +84,7 @@
                                 </a>
 
                                 <a
-                                    href="#"
+                                    href="{% url "accounts:create" %}"
                                     class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                     role="menuitem"
                                 >
@@ -94,7 +95,44 @@
                             </div>
                         </div>
                     </li>
+                    {% else %}
+                    <li>
+                        <div class="hidden invisible hover:visible md:relative md:block">
+                            <a class="visible text-gray-500 transition hover:text-gray-500/75" href="{% url "accounts:login" %}"> Applications </a>
+                            
+                            <div
+                                class="absolute end-0 z-10 mt-0.5 w-42 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+                                role="menu"
+                            >
+                                <div class="p-2">
+                                <a
+                                    href="{% url "accounts:login" %}"
+                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                    role="menuitem"
+                                >
+                                    Withdraw
+                                </a>
 
+                                <a
+                                    href="{% url "accounts:login" %}"
+                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                    role="menuitem"
+                                >
+                                    Deposit
+                                </a>
+
+                                <a
+                                    href="{% url "accounts:login" %}"
+                                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                    role="menuitem"
+                                >
+                                    Transfer
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
                     <li>
                     <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> About </a>
                     </li>

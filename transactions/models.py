@@ -32,7 +32,7 @@ share common code.
 class Transaction(models.Model):
     id = models.IntegerField(primary_key=True, auto_created=True, unique=True, verbose_name="transaction_id")
     origin_account = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name="origin_account")
-    destiny_account_number = models.CharField(max_length=16, null=True, verbose_name="destiny_account_number")
+    destiny_account_number = models.CharField(max_length=16, null=True, blank=True, verbose_name="destiny_account_number")
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="creation_date")
     amount = models.FloatField(default=0, verbose_name="amount")
     transaction_type = models.TextField(choices=TRANSACTION_TYPE, default=TRANSACTION_TYPE["N"], verbose_name="transaction_type")
