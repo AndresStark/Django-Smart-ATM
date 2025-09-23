@@ -11,7 +11,7 @@ class TransactionForm(forms.ModelForm):
 
 
 class WithdrawTransactionForm(TransactionForm):
-    amount = forms.FloatField(label="Amount to Deposit", required=True)
+    amount = forms.FloatField(label="Amount to Withdraw", required=True)
     description = forms.CharField(max_length=500, label="Withdraw description", required=False)
 
 

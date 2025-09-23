@@ -16,10 +16,10 @@ class Bill(models.Model):
     value = models.IntegerField(verbose_name="value")
     identity = models.CharField(max_length=30, verbose_name="identity")
     currency_code = models.CharField(max_length=10, verbose_name="currency_code")
-    image = models.ImageField(blank=True, verbose_name="image")
+    image = models.ImageField(upload_to="static/bills", blank=True, verbose_name="image")
 
     def __str__(self):
-        return f"Bill: " + self.value
+        return f"$" + str(self.value) + " " + self.currency_code
 
 
 """
@@ -33,6 +33,7 @@ class Transaction(models.Model):
     id = models.IntegerField(primary_key=True, auto_created=True, unique=True, verbose_name="transaction_id")
     origin_account = models.ForeignKey(Account, on_delete=models.CASCADE, verbose_name="origin_account")
     destiny_account_number = models.CharField(max_length=16, null=True, blank=True, verbose_name="destiny_account_number")
+    machine_transactor = models.ForeignKey(MachineAccount, on_delete=models.PROTECT, related_name="machine_account",verbose_name="machine_transactor")
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name="creation_date")
     amount = models.FloatField(default=0, verbose_name="amount")
     transaction_type = models.TextField(choices=TRANSACTION_TYPE, default=TRANSACTION_TYPE["N"], verbose_name="transaction_type")
@@ -50,18 +51,36 @@ Registers the quantity and the type of bills for each transaction
 
 """
 class TransactionBills(models.Model):
-    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, verbose_name="transaction")
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, related_name="transaction_bills", verbose_name="transaction")
     bill = models.ForeignKey(Bill, on_delete=models.PROTECT, verbose_name="bill")
     quantity = models.IntegerField(default=0, verbose_name="quantity")
+    total_value = models.FloatField(default=0, verbose_name="total_value")
 
     def __str__(self):
         return f"{self.transaction} - {self.bill.value}"
     
+    def sum_value(self):
+        number = float(self.quantity * self.bill.value)
+        return number
+
+    def save(self):
+        self.total_value = self.sum_value()
+        return super().save()
+    
 
 class MachineAccountBills(models.Model):
-    machine_account = models.ForeignKey(MachineAccount, on_delete=models.CASCADE, verbose_name="machine_account")
+    machine_account = models.ForeignKey(MachineAccount, on_delete=models.CASCADE, related_name="machine_account_bills", verbose_name="machine_account")
     bill = models.ForeignKey(Bill, on_delete=models.PROTECT, verbose_name="bill")
     quantity = models.IntegerField(default=0, verbose_name="quantity")
+    total_value = models.FloatField(default=0, verbose_name="total_value")
 
     def __str__(self):
         return f"{self.machine_account} - {self.bill.value}"
+    
+    def sum_value(self):
+        number = float(self.quantity * self.bill.value)
+        return number
+
+    def save(self):
+        self.total_value = self.sum_value()
+        return super().save()

@@ -133,6 +133,15 @@ class Migration(migrations.Migration):
                         verbose_name="origin_account",
                     ),
                 ),
+                (
+                    "machine_transactor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="accounts.machineaccount",
+                        related_name="machine_account",
+                        verbose_name="machine_transactor",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(

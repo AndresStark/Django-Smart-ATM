@@ -5,8 +5,8 @@ from .models import Bill, Transaction, TransactionBills
 class BillAdmin(admin.ModelAdmin):
     model = Bill
     list_display = [
-        'value',
         'identity',
+        'value',
         'currency_code',
         'image',
     ]
@@ -25,6 +25,7 @@ class TransactionAdmin(admin.ModelAdmin):
         'id',
         'origin_account',
         'destiny_account_number',
+        'machine_transactor',
         'creation_date',
         'amount',
         'transaction_type',
