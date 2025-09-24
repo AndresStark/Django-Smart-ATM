@@ -134,11 +134,11 @@
                     </li>
                     {% endif %}
                     <li>
-                    <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> About </a>
+                    <a class="text-gray-500 transition hover:text-gray-500/75" href="{% url "atm:about" %}"> About </a>
                     </li>
 
                     <li>
-                    <a class="text-gray-500 transition hover:text-gray-500/75" href="#"> Contact </a>
+                    <a class="text-gray-500 transition hover:text-gray-500/75" href="{% url "atm:contact" %}"> Contact </a>
                     </li>
                 </ul>
                 </nav>
@@ -181,7 +181,7 @@
                             </a>
                             {% endif %}
             
-                            <a
+                            {% comment %} <a
                             href="#"
                             class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                             role="menuitem"
@@ -195,7 +195,7 @@
                             role="menuitem"
                             >
                             Team settings
-                            </a>
+                            </a> {% endcomment %}
                         </div>
             
                         <div class="p-2">

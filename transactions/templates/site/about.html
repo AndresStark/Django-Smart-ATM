@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
+    <div class="py-16 rounded"></div>
+    <div class="py-16 rounded lg:col-span-2">
+
+        <article class="relative overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg">
+        <img
+            alt=""
+            src="https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80"
+            class="absolute inset-0 h-full w-full object-cover"
+        />
+
+        <div class="relative bg-gradient-to-t from-gray-900/50 to-gray-900/25 pt-32 sm:pt-48 lg:pt-64">
+            <div class="p-4 sm:p-6">
+
+            <p href="#">
+                <h3 class="mt-0.5 text-lg text-white">DjangoATM - Smart ATM Web Interface</h3>
+            </p>
+
+            <p class="mt-2 text-sm/relaxed text-white/95">
+                DjangoATM is a web-based simulation of an Automated Teller Machine (ATM), 
+                designed to demonstrate how essential banking operations can be implemented 
+                in a secure and user-friendly way. The system allows customers to log in 
+                with their account credentials, view balances, withdraw or deposit money, 
+                transfer funds between accounts, and review transaction history.
+            </p>
+            </div>
+        </div>
+        </article>
+
+        <article
+        class="rounded-lg border border-gray-100 bg-white p-4 shadow-xs transition hover:shadow-lg sm:p-6"
+        >
+        <p href="#">
+            <h3 class="mt-0.5 text-lg font-medium text-gray-900">
+            About DjangoATM.
+            </h3>
+        </p>
+
+        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+            Built with the Django framework, DjangoATM benefits from Django’s robust security 
+            features, including password hashing, protection against SQL injection, 
+            cross-site request forgery (CSRF) prevention, and session management. 
+            These safeguards help ensure that account data and financial transactions remain protected.
+        </p>
+        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+            The application is structured around modular components:
+        </p>
+        <br>
+
+        <div class="flow-root">
+        <dl
+            class="-my-3 divide-y divide-gray-200 rounded border border-gray-200 text-sm *:even:bg-gray-50"
+        >
+            <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+
+            <dd class="text-gray-700 sm:col-span-2">Accounts for user authentication and profile management.</dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+
+            <dd class="text-gray-700 sm:col-span-2">Transactions for deposits, withdrawals, and transfers.</dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+
+            <dd class="text-gray-700 sm:col-span-2">ATM Account Dashboard for monitoring cash reserves.</dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+
+            <dd class="text-gray-700 sm:col-span-2">Admin Accounts to configure different simulated machines</dd>
+            </div>
+        </dl>
+        </div>
+        <br>
+
+        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+            DjangoATM provides a practical, scalable foundation for experimenting with financial 
+            applications, combining realistic banking functionality with Django’s built-in 
+            reliability and security.
+        </p>
+        </article>
+
+
+    </div>
+    <div class="py-16 rounded"></div>
+</div>
+
+{% endblock content %}
